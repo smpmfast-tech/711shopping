@@ -50,22 +50,8 @@
       <p id="basket-empty" class="catalog-empty">ยังไม่มีสินค้าในตะกร้า</p>
       <div id="order-area" hidden>
         <p class="basket-total">ยอดรวม <strong id="basket-total">฿0.00</strong> <span>ชำระเงินปลายทาง (COD)</span></p>
-        <form id="order-form" class="customer-form">
-          <h2>ข้อมูลจัดส่ง</h2>
-          <label>ชื่อผู้รับ<input name="customer" maxlength="160" autocomplete="name" required></label>
-          <label>ที่อยู่<input name="address" maxlength="500" autocomplete="address-line1" required></label>
-          <label>ที่อยู่เพิ่มเติม<input name="address1" maxlength="500" autocomplete="address-line2"></label>
-          <div class="form-row">
-            <label>รหัสไปรษณีย์<input name="postcode" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" autocomplete="postal-code" required></label>
-            <label>เบอร์โทรศัพท์<input name="phone_number" type="tel" maxlength="24" autocomplete="tel" required></label>
-          </div>
-          <label>หมายเหตุ<input name="remark" maxlength="1000"></label>
-          <label class="consent-label"><input name="privacy_consent" type="checkbox" required> ยินยอมให้ใช้ข้อมูลเพื่อดำเนินการจัดส่งตามนโยบายความเป็นส่วนตัว</label>
-          <p id="order-state" class="form-state" role="status"></p>
-          <button class="primary-button" type="submit" disabled>ยืนยันคำสั่งซื้อแบบเก็บเงินปลายทาง</button>
-        </form>
+        <button id="checkout-button" class="store-buy-button cart-checkout-button" type="button">ดำเนินการสั่งซื้อ</button>
       </div>
-      <p id="order-done" class="form-state" role="status"></p>
     </section>
   </main>
 

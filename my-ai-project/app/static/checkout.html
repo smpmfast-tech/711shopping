@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ec008c">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+  <title>ยืนยันคำสั่งซื้อ | 711SHOPPING</title>
+  <link rel="stylesheet" href="/static/home.css">
+  <link rel="stylesheet" href="/static/product.css">
+  <link rel="stylesheet" href="/static/mobile-nav.css">
+</head>
+<body>
+  <div class="utility-bar">
+    <div class="container utility-content">
+      <span>ยินดีต้อนรับสู่ 711SHOPPING</span>
+      <a href="tel:024307709">ศูนย์บริการลูกค้า 02 430 7709</a>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-content">
+      <a class="brand" href="/" aria-label="711SHOPPING หน้าหลัก">
+        <span class="brand-mark" aria-hidden="true"><span>GO</span><small>DELIVERY</small></span>
+        <span class="brand-name">711SHOPPING<small>ช้อปปิ้งและบริการสำหรับทุกวัน</small></span>
+      </a>
+      <nav class="desktop-nav" aria-label="เมนูหลัก">
+        <a href="/">หน้าแรก</a>
+        <a href="/product">ผลิตภัณฑ์</a>
+        <a href="/#promotions">โปรโมชันและข่าวสาร</a>
+        <a href="/faq">คำถามที่พบบ่อย</a>
+        <a href="/cart">ตะกร้า <span id="basket-count" class="basket-count">0</span></a>
+        <a href="/user-profile">บัญชีส่วนตัว</a>
+      </nav>
+      <a class="header-chat" href="/chatandshop">คุยกับ AI <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+
+  <main class="container catalog-page">
+    <nav class="catalog-breadcrumb" aria-label="เส้นทางนำทาง">
+      <a href="/">หน้าแรก</a><span aria-hidden="true">/</span><a href="/cart">ตะกร้าสินค้า</a><span aria-hidden="true">/</span><span>ยืนยันคำสั่งซื้อ</span>
+    </nav>
+
+    <section class="container basket-panel cart-panel" id="checkout">
+      <div class="section-heading">
+        <div><span class="section-kicker">CHECKOUT</span><h1>ยืนยันคำสั่งซื้อ</h1></div>
+        <a href="/cart">กลับไปตะกร้าสินค้า <span aria-hidden="true">→</span></a>
+      </div>
+
+      <div id="checkout-empty" class="catalog-empty" hidden>
+        <p>ยังไม่มีสินค้าในตะกร้า กรุณาเลือกสินค้าก่อนยืนยันคำสั่งซื้อ</p>
+        <a class="store-buy-button cart-checkout-button" href="/product">เลือกดูสินค้า</a>
+      </div>
+
+      <div id="checkout-area" hidden>
+        <div id="checkout-items" class="basket-items"></div>
+        <p class="basket-total">ยอดรวม <strong id="checkout-total">฿0.00</strong> <span>ชำระเงินปลายทาง (COD)</span></p>
+        <form id="order-form" class="customer-form">
+          <h2>ข้อมูลจัดส่ง</h2>
+          <label>ชื่อผู้รับ<input name="customer" maxlength="160" autocomplete="name" required></label>
+          <label>ที่อยู่<input name="address" maxlength="500" autocomplete="address-line1" required></label>
+          <label>ที่อยู่เพิ่มเติม<input name="address1" maxlength="500" autocomplete="address-line2"></label>
+          <div class="form-row">
+            <label>รหัสไปรษณีย์<input name="postcode" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" autocomplete="postal-code" required></label>
+            <label>เบอร์โทรศัพท์<input name="phone_number" type="tel" maxlength="24" autocomplete="tel" required></label>
+          </div>
+          <label>หมายเหตุ<input name="remark" maxlength="1000"></label>
+          <label class="consent-label"><input name="privacy_consent" type="checkbox" required> ยินยอมให้ใช้ข้อมูลเพื่อดำเนินการจัดส่งตามนโยบายความเป็นส่วนตัว</label>
+          <p id="order-state" class="form-state" role="status"></p>
+          <button class="primary-button" type="submit" disabled>ยืนยันคำสั่งซื้อแบบเก็บเงินปลายทาง</button>
+        </form>
+      </div>
+      <p id="order-done" class="form-state" role="status"></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-bottom"><span>© 2026 711SHOPPING. All rights reserved.</span><a href="/chatandshop">AI Voice Allday</a></div>
+  </footer>
+  <script src="/static/checkout.js" defer></script>
+  <script src="/static/mobile-nav.js" defer></script>
+</body>
+</html>

@@ -49,6 +49,16 @@ async def cart_page() -> FileResponse:
     return FileResponse(STATIC_DIR / "cart.html")
 
 
+CHECKOUT_SUFFIX_PATTERN = re.compile(r"(0[1-9]|[12][0-9]|3[01])[0-9]{3}")
+
+
+@app.get("/checkout{suffix}", include_in_schema=False)
+async def checkout_page(suffix: str) -> Response:
+    if not CHECKOUT_SUFFIX_PATTERN.fullmatch(suffix):
+        return RedirectResponse("/cart", status_code=302)
+    return FileResponse(STATIC_DIR / "checkout.html", headers={"Cache-Control": "no-store"})
+
+
 @app.get("/faq", include_in_schema=False)
 async def faq_page() -> FileResponse:
     return FileResponse(STATIC_DIR / "faq.html")

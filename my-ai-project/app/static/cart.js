@@ -1,20 +1,12 @@
 const basketItems = document.querySelector("#basket-items");
 const basketEmpty = document.querySelector("#basket-empty");
 const orderArea = document.querySelector("#order-area");
-const orderForm = document.querySelector("#order-form");
-const orderState = document.querySelector("#order-state");
-const orderDone = document.querySelector("#order-done");
+const checkoutButton = document.querySelector("#checkout-button");
 const basketCount = document.querySelector("#basket-count");
 const BASKET_KEY = "godelivery-basket";
 const productById = new Map();
 let basket = new Map();
-let privacyPolicyConfigured = false;
 let contentLoaded = false;
-
-function showState(element, message, isError = false) {
-  element.textContent = message;
-  element.classList.toggle("form-state-error", isError);
-}
 
 function makeElement(tag, className, text) {
   const element = document.createElement(tag);
@@ -39,7 +31,7 @@ function persistBasket() {
   try {
     localStorage.setItem(BASKET_KEY, JSON.stringify(Array.from(basket.entries())));
   } catch (error) {
-    showState(orderState, "บันทึกตะกร้าในอุปกรณ์นี้ไม่ได้ กรุณาคงหน้าเว็บไว้จนกว่าจะส่งรายการ", true);
+    console.error("Could not save the shopping basket on this device.", error);
   }
 }
 
@@ -58,7 +50,7 @@ function renderBasket() {
       if (contentLoaded) {
         hasUnavailableProduct = true;
         description.append(makeElement("strong", "", `สินค้า ${productId} ไม่พร้อมจำหน่าย`));
-        description.append(makeElement("small", "", "นำรายการออกจากตะกร้าก่อนส่งคำสั่งซื้อ"));
+        description.append(makeElement("small", "", "นำรายการออกจากตะกร้าก่อนดำเนินการสั่งซื้อ"));
       } else {
         description.append(makeElement("strong", "", `สินค้า ${productId}`));
         description.append(makeElement("small", "", "กำลังโหลดข้อมูลสินค้า…"));
@@ -114,9 +106,15 @@ function renderBasket() {
   orderArea.hidden = basket.size === 0;
   basketCount.textContent = String(totalItems);
   document.querySelector("#basket-total").textContent = formatPrice(totalPrice);
-  orderForm.querySelector('button[type="submit"]').disabled =
-    hasUnavailableProduct || !privacyPolicyConfigured;
+  checkoutButton.disabled = hasUnavailableProduct;
 }
+
+checkoutButton.addEventListener("click", () => {
+  if (basket.size === 0) return;
+  const day = String(new Date().getDate()).padStart(2, "0");
+  const random = String(Math.floor(Math.random() * 1000)).padStart(3, "0");
+  window.location.assign(`/checkout${day}${random}`);
+});
 
 async function loadSiteContent() {
   try {
@@ -127,12 +125,9 @@ async function loadSiteContent() {
     for (const product of content.products || []) {
       if (product.active) productById.set(product.product_id, product);
     }
-    privacyPolicyConfigured = Boolean(content.security?.body?.trim());
-    orderForm.querySelector('input[name="privacy_consent"]').disabled = !privacyPolicyConfigured;
     contentLoaded = true;
   } catch (error) {
     console.error("Could not load the product catalog for the basket.", error);
-    showState(orderState, "โหลดข้อมูลสินค้าไม่สำเร็จ กรุณารีเฟรชหน้าอีกครั้ง", true);
   }
   renderBasket();
 }
@@ -148,43 +143,6 @@ try {
 } catch (error) {
   console.error("Could not restore the saved shopping basket.", error);
 }
-
-orderForm.addEventListener("submit", async (event) => {
-  event.preventDefault();
-  const submitButton = orderForm.querySelector('button[type="submit"]');
-  submitButton.disabled = true;
-  showState(orderState, "กำลังส่งคำสั่งซื้อ…");
-  const formData = new FormData(orderForm);
-  const payload = {
-    customer: String(formData.get("customer") || "").trim(),
-    address: String(formData.get("address") || "").trim(),
-    address1: String(formData.get("address1") || "").trim(),
-    postcode: String(formData.get("postcode") || "").trim(),
-    phone_number: String(formData.get("phone_number") || "").trim(),
-    remark: String(formData.get("remark") || "").trim(),
-    privacy_consent: formData.get("privacy_consent") === "on",
-    items: Array.from(basket, ([product_id, quantity]) => ({ product_id, quantity })),
-  };
-  try {
-    const response = await fetch("/api/v1/site/orders", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-    const result = await response.json().catch(() => ({}));
-    if (!response.ok) throw new Error(result.detail || "ส่งคำสั่งซื้อไม่สำเร็จ");
-    basket.clear();
-    persistBasket();
-    orderForm.reset();
-    renderBasket();
-    showState(orderState, "");
-    showState(orderDone, `${result.message} เลขที่รายการ ${result.ordernumber}`);
-  } catch (error) {
-    showState(orderState, error.message, true);
-  } finally {
-    renderBasket();
-  }
-});
 
 window.addEventListener("storage", (event) => {
   if (event.key !== BASKET_KEY) return;

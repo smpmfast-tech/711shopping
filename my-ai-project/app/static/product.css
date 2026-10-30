@@ -52,6 +52,8 @@
 .cart-panel { margin-top: 6px; margin-bottom: 30px; }
 .cart-panel .section-heading h1 { margin: 4px 0 0; font: 700 24px "Kanit", "Sarabun", sans-serif; }
 .cart-panel .customer-form h2 { margin: 0; font: 700 17px "Kanit", sans-serif; }
+.cart-checkout-button { width: 100%; min-height: 46px; margin-top: 6px; font-size: 15px; text-decoration: none; }
+.cart-checkout-button:disabled { color: #9c969f; background: #f4f2f5; cursor: not-allowed; }
 .basket-line strong a { color: inherit; text-decoration: none; }
 .product-detail { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; margin: 6px 0 30px; padding: 22px; border: 1px solid #f3dfe9; border-radius: 20px; background: #fff; }
 .product-detail-media { overflow: hidden; border-radius: 14px; background: #fff; }
