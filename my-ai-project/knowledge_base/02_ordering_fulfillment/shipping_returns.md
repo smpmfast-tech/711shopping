@@ -1,5 +1,22 @@
 # Shipping and Returns
 
-No verified shipping fees, delivery estimates, service areas, return policy, or refund terms have been added to the knowledge base yet.
+Shipping and returns details below were provided by the business owner on 2026-10-31.
 
-The agent must not invent delivery dates, free-shipping offers, cash-on-delivery availability, or return/refund promises. Offer to confirm these details with the seller.
+## การจัดส่ง
+
+- จัดส่งฟรีทุกออเดอร์ผ่าน Flash Express พร้อมบริการเก็บเงินปลายทาง (COD) 100% ไม่มีบวกเพิ่ม
+- ตัดรอบจัดส่ง 13:00 น. (สั่งก่อน 13:00 น. จัดส่งออกทันที) ลูกค้าได้รับสินค้าใน 1-3 วัน
+- เจ้าหน้าที่ขนส่งจะโทรนัดหมายก่อนนำส่ง เพื่อให้ลูกค้าเตรียมเงินปลายทาง
+- ลูกค้าสามารถเปิดแกะดูสินค้าก่อนจ่ายเงินได้
+
+## ช่องทางของแท้ 100%
+
+จำหน่ายเพียง 2 ช่องทาง: 7-Eleven / 711 Shopping และช่องทางตรงของบริษัท (น้องฟ้าใส) สั่งช่องทางนี้ไม่ต้องโอนก่อน
+
+## เงื่อนไขคืนสินค้า
+
+รับคืนเฉพาะสินค้าที่อยู่ในสภาพสมบูรณ์ ไม่ถูกแกะซีล/บรรจุภัณฑ์ หากแกะซีลแล้วไม่รับคืนทุกกรณี
+
+## เวลาให้บริการ
+
+น้องฟ้าใสคอยดูแลและรับคำสั่งซื้อตลอด 24 ชั่วโมง

@@ -1,5 +1,8 @@
 # Ordering
 
-No verified ordering process, payment methods, contact channel, or order cutoff time has been added to the knowledge base yet.
+Ordering details below were provided by the business owner on 2026-10-31.
 
-The agent must not claim that an order has been placed or promise a payment method. Collect order details only after the customer explicitly agrees, then confirm the product, quantity, recipient, phone number, and delivery address before submission. This app currently has no order-submission integration.
+- ช่องทางสั่งซื้อของแท้: 7-Eleven / 711 Shopping และช่องทางตรงของบริษัท (น้องฟ้าใส) ตลอด 24 ชั่วโมง
+- ชำระเงินแบบเก็บเงินปลายทาง (COD) 100% ไม่ต้องโอนเงินก่อน เปิดแกะดูของก่อนจ่ายได้
+- ตัดรอบจัดส่ง 13:00 น. สั่งก่อน 13:00 น. ส่งออกทันที ได้รับสินค้าใน 1-3 วัน
+- Collect order details only after the customer explicitly agrees, then confirm the product, quantity, recipient, phone number, and delivery address before submission.
