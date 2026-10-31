@@ -18,7 +18,7 @@ PERSONA_NAME = "ฟ้าใส"
 LISTEN_DELAY_S = 1.8
 HELLO_AFTER_S = 2.0
 HANGUP_AFTER_S = 1.0
-HELLO_REPLY_TIMEOUT_S = 6.0
+HELLO_REPLY_TIMEOUT_S = 2.0
 CALL_TIME_LIMIT_S = 600
 CALL_TIME_WARNING_S = 585
 CALL_ADDRESS_EXTENSION_S = 120
@@ -56,7 +56,10 @@ GREETING_PROMPT = (
     "[ระบบ] มีสายเข้า ให้พูดประโยคต่อไปนี้ตรงตัวทุกคำ ห้ามเพิ่ม ลด หรือเปลี่ยนคำ "
     f"แล้วหยุดรอลูกค้า: “{GREETING_TEXT}”"
 )
-HELLO_PROMPT = "[ระบบ] ลูกค้าเงียบไป ให้พูดเพียงคำเดียวว่า “ฮัลโหลคะ” แล้วหยุดรอลูกค้า"
+HELLO_PROMPT = (
+    "[ระบบ] ลูกค้าเงียบไป ให้พูดตรงตัวทุกคำว่า "
+    "“ฮัลโหลคะ ฮัลโหลคะ ลูกค้าอยู่ในสายไหมคะ” แล้วหยุดรอลูกค้า"
+)
 HANGUP_PROMPT = (
     "[ระบบ] ลูกค้ายังเงียบอยู่ ให้พูดตรงตัวทุกคำว่า "
     f"“{HANGUP_TEXT} {CLOSING_TEXT}” แล้วหยุดพูด"
