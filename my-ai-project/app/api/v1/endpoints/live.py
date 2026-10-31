@@ -179,7 +179,8 @@ async def gemini_live(
                     "voice": settings.GEMINI_LIVE_VOICE,
                 }
             )
-            await session.send_realtime_input(text=GREETING_PROMPT)
+            # แก้ไข: ใช้ session.send(input=...) แทนการส่งผ่าน send_realtime_input(text=...)
+            await session.send(input=GREETING_PROMPT, end_of_turn=True)
 
             def customer_active() -> None:
                 silence.on_customer_activity()
@@ -197,7 +198,7 @@ async def gemini_live(
                             await ensure_ticket()
                             customer_active()
                             agent.add_transcript("customer", text.strip(), stamp())
-                            await session.send_realtime_input(text=text.strip())
+                            await session.send(input=text.strip(), end_of_turn=True)
                     elif message_type == "audio":
                         encoded_audio = message.get("data")
                         if not isinstance(encoded_audio, str):
@@ -305,7 +306,7 @@ async def gemini_live(
                     ):
                         agent.pending_redirect = HOME_URL
                         agent.close_reason = "time_limit"
-                        await session.send_realtime_input(text=CALL_TIME_LIMIT_PROMPT)
+                        await session.send(input=CALL_TIME_LIMIT_PROMPT, end_of_turn=True)
                     if forced_close_deadline is not None and now >= forced_close_deadline:
                         raise _EndSession("time_limit", HOME_URL)
                     if (
@@ -325,36 +326,35 @@ async def gemini_live(
                                 call_started_at + CALL_TIME_LIMIT_S + CALL_ADDRESS_EXTENSION_S
                             )
                             forced_close_deadline = address_extension_deadline
-                            await session.send_realtime_input(
-                                text=CALL_ADDRESS_EXTENSION_PROMPT
-                            )
+                            await session.send(input=CALL_ADDRESS_EXTENSION_PROMPT, end_of_turn=True)
                             continue
                         else:
                             agent.pending_redirect = HOME_URL
                             agent.close_reason = "time_limit"
                             forced_close_deadline = call_started_at + CALL_TIME_LIMIT_S
-                            await session.send_realtime_input(text=CALL_TIME_LIMIT_PROMPT)
+                            await session.send(input=CALL_TIME_LIMIT_PROMPT, end_of_turn=True)
                             continue
                     if forced_close_deadline is not None:
                         continue
                     silent_action = silence.poll(now)
                     if silent_action == "hello":
-                        await session.send_realtime_input(text=HELLO_PROMPT)
+                        await session.send(input=HELLO_PROMPT, end_of_turn=True)
                         continue
                     if silent_action == "hangup":
                         agent.pending_redirect = HOME_URL
                         agent.close_reason = "silence_hangup"
-                        await session.send_realtime_input(text=HANGUP_PROMPT)
+                        await session.send(input=HANGUP_PROMPT, end_of_turn=True)
                         continue
                     action = watchdog.poll(now)
                     if action == "wait_notice":
-                        await session.send_realtime_input(text=WAIT_NOTICE_PROMPT)
+                        await session.send(input=WAIT_NOTICE_PROMPT, end_of_turn=True)
                     elif action == "ask_repeat":
                         unanswered = watchdog.unanswered_text
-                        await session.send_realtime_input(text=ASK_REPEAT_PROMPT)
+                        await session.send(input=ASK_REPEAT_PROMPT, end_of_turn=True)
                         if unanswered:
-                            await session.send_realtime_input(
-                                text=UNANSWERED_HINT.format(text=unanswered)
+                            await session.send(
+                                input=UNANSWERED_HINT.format(text=unanswered),
+                                end_of_turn=True,
                             )
 
             tasks = {
